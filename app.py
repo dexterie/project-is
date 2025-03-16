@@ -102,7 +102,7 @@ with tab2:
     - **รูปหมา**: 10000รูป
     - **แต่ผมนำมาใช้จริงแค่ 1040 รูป เพราะ ผมกลัวข้อมูลมันจะใหญ่เกินไป 
     """)
-    st.image("C:\\is\\photo\\Dog-cat.jpg")
+    st.image("photo/dog-cat.jpg")
     
     st.write("ผมได้ตรวจสอบว่า dataset มีภาพที่ถูกต้อง ไม่มีไฟล์แปลกปลอม")
     st.image("photo/nn7.png")

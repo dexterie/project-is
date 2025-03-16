@@ -168,7 +168,6 @@ with tab4:
 
     # โหลดโมเดล
     model = load_model("model/mobilenetv2_cat_dog.h5")
-    model.save("model/mobilenetv2_cat_dog.h5")
 
     # ฟังก์ชันทำนายภาพ
     def predict_image(image):
@@ -178,7 +177,7 @@ with tab4:
         img_array = preprocess_input(img_array)  # ปรับค่าตาม MobileNetV2
         img_array = np.expand_dims(img_array, axis=0)  # เพิ่มมิติให้ TensorFlow ใช้ได้
 
-        prediction = model.predict(img_array)[0][0]  # ทำนายผล
+        prediction = model.predict(img_array)[0]  # ทำนายผล
         return "🐶 Dog" if prediction > 0.5 else "🐱 Cat"
 
     # อัพโหลดภาพเฉพาะใน tab4

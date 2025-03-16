@@ -5,6 +5,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.utils import get_custom_objects
 from tensorflow.keras.models import load_model
 
 

@@ -8,13 +8,12 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
 
 st.set_page_config(page_title="ML & NN", layout="wide")
-file_path = r'C:\is\photo\Dog-cat.jpg'
 tab1, tab2, tab3, tab4 = st.tabs(["Machine Learning", "Neural Network", "Demo Machine Learning", "Demo Neural Network"])
 
-with open("./model/svm_model.pkl", "rb") as file:
+with open("model/svm_model.pkl", "rb") as file:
     svm_model = pickle.load(file)
 
-with open("./model/rf_model.pkl", "rb") as file:
+with open("model/rf_model.pkl", "rb") as file:
     rf_model = pickle.load(file)
 
 with tab1:
@@ -70,26 +69,26 @@ with tab1:
     """)
 
     st.write("เริ่มแรกผมได้ตรวจสอบข้อมูล head and tail ในตารางว่า มีค่า Nan มั้ย ในรูปจะเห็นว่ามีค่า Nan", unsafe_allow_html=True)
-    st.image("./photo/check_dataset_svm1.png")
+    st.image("photo/check_dataset_svm1.png")
 
     st.write("จากนั้นผมก็มาดูแต่ละ Column มีค่า Null เท่าไหร่ แล้ว Sum ออกมาดูจำนวน", unsafe_allow_html=True)
-    st.image("./photo/null_sum.png")
+    st.image("photo/null_sum.png")
 
     st.write("พอเราได้เห็นจำนวนทั้งหมดของค่า Null ผมเลยได้ทำการจัดการค่าหาย ใช้ ค่ามัธยฐาน (median) เติมค่าในคอลัมน์ 'chol' เพราะอาจมีค่า outlier ได้"
     "แล้วต่อมาได้ทำ ลบแถวที่ยังมี missing values หลังเติมค่าแล้ว และ ลบคอลัมน์ที่มีค่าว่างเกิน 50% ของแถวทั้งหมด", unsafe_allow_html=True)
-    st.image("./photo/put_data.png")
+    st.image("photo/put_data.png")
 
     st.write("แปลงค่า Target เป็น 0 และ 1 แล้วถ้าค่ามากกว่า 0.5 จะกำหนดเป็น 1 น้อยกว่านั้นเป็น 0", unsafe_allow_html=True)
-    st.image("./photo/target.png")
+    st.image("photo/target.png")
 
     st.write("ผมแยก featrures และ Target "
     "หลังจากนั้นก็ทำการ split ข้อมูลแบ่งเป็น train 80% กับ test 20% โดยให้ random state = 42", unsafe_allow_html=True)
-    st.image("./photo/spilt.png")
+    st.image("photo/spilt.png")
 
     st.write("หลังจากนั้นผมก็เรียกใช้ model Support Vector Regression โดยเป็นการใช้แนวคิดของ Support Vector Machine กับ Classification "
     "เพราะ เหมาะกับข้อมูลที่แยกกันได้ดีในเชิงเส้น ต่อมาผมก็เรียกใช้ model RandomForest เป็นอัลกอริธึม Machine Learning ที่ใช้ การรวมกันของหลายๆ Decision Trees โดย สร้างหลายๆ Decision Trees"
     " แต่ละต้นไม้เรียนรู้ข้อมูลที่สุ่มมา ทำให้มีความแตกต่างกัน'", unsafe_allow_html=True)
-    st.image("./photo/Train.png")
+    st.image("photo/Train.png")
     
 with tab2:
     st.write("ผมเริ่มหาจากการหาข้อมูลภายใน Kaggle แล้วได้เลือก "
@@ -103,30 +102,29 @@ with tab2:
     - **รูปหมา**: 10000รูป
     - **แต่ผมนำมาใช้จริงแค่ 1040 รูป เพราะ ผมกลัวข้อมูลมันจะใหญ่เกินไป 
     """)
-    image1 = Image.open(file_path)
-    st.image(image1)
+    st.image("C:\\is\\photo\\Dog-cat.jpg")
     
     st.write("ผมได้ตรวจสอบว่า dataset มีภาพที่ถูกต้อง ไม่มีไฟล์แปลกปลอม")
-    st.image("./photo/nn7.png")
+    st.image("photo/nn7.png")
 
     st.write("ต่อมาผมได้ตรวจสอบว่าภาพมีขนาดใกล้เคียงกัน หรือมีภาพที่เสียหายมั้ย")
-    st.image("./photo/nn6.png")
+    st.image("photo/nn6.png")
 
     st.write("อ่านภาพจากโฟลเดอร์ Cat และ Dog และทำการแยกประเภทของไฟล์ jpg, png, jpeg จำกัดจำนวนรูปภาพ 1040รูป ขนาดรูปภาพ 224x224 และ แปลงป้ายกำกับเป็น 1 (Dog) และ 0 (Cat)", unsafe_allow_html=True)
-    st.image("./photo/nn1.png")
+    st.image("photo/nn1.png")
 
     st.write("จำกัดจำนวนรูปภาพ 520รูปต่อคลาส และ รวมข้อมูลทั้งหมดเป็นอาร์เรย์ data และ labels", unsafe_allow_html=True)
-    st.image("./photo/nn2.png")
+    st.image("photo/nn2.png")
 
     st.write("ใช้ ImageDataGenerator เพื่อเพิ่มข้อมูลภาพโดย หมุนภาพสุ่ม ,เลื่อนภาพสุ่ม, ขยาย/ย่อภาพ, พลิกภาพ", unsafe_allow_html=True)
-    st.image("./photo/nn3.png")
+    st.image("photo/nn3.png")
 
     st.write("โหลดโมเดล MobileNetV2 และกำหนดค่า Fine-Tuning ล็อกเลเยอร์ทั้งหมด ยกเว้น 30 เลเยอร์สุดท้าย จากนั้นสร้างโมเดล"
     "ใช้ GlobalAveragePooling2D ลดขนาดฟีเจอร์แมพ,เพิ่ม Dense Layer ขนาด 128 นิวรอน, ใช้Dropout 0.5 เพื่อป้องกัน Overfitting ใช้ Optimizer Adam(learning_rate=0.00001)", unsafe_allow_html=True)
-    st.image("./photo/nn4.png")
+    st.image("photo/nn4.png")
 
     st.write("จากนั้นมาฝึกโมเดลโดยใช้ Data Augmentation กำหนด batch_size = 32 และ ใช้ 10 epochs", unsafe_allow_html=True)
-    st.image("./photo/nn5.png")
+    st.image("photo/nn5.png")
 
 with tab3:
       st.title("Demo Machine Learning: Heart Disease Prediction")
@@ -165,10 +163,10 @@ with tab4:
     st.title("Demo Neural Network")
     st.title("🐶🐱 Cat vs Dog Classifier")
     st.write("<h4 style='text-align: ;'>MobilenetV2</h4>", unsafe_allow_html=True)
-    st.image("./photo/Graph.png")
+    st.image("photo/Graph.png")
 
     # โหลดโมเดล
-    model = tf.keras.models.load_model("./model/mobilenetv2_cat_dog.h5")
+    model = tf.keras.models.load_model("model/mobilenetv2_cat_dog.h5")
 
     # ฟังก์ชันทำนายภาพ
     def predict_image(image):

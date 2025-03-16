@@ -5,6 +5,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.models import load_model
 
 
 st.set_page_config(page_title="ML & NN", layout="wide")
@@ -166,7 +167,8 @@ with tab4:
     st.image("photo/Graph.png")
 
     # โหลดโมเดล
-    model = tf.keras.models.load_model("model/mobilenetv2_cat_dog.h5")
+    model = load_model("model/mobilenetv2_cat_dog.h5")
+    model.save("model/mobilenetv2_cat_dog.h5")
 
     # ฟังก์ชันทำนายภาพ
     def predict_image(image):

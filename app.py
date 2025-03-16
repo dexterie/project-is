@@ -168,7 +168,7 @@ with tab4:
     st.image("photo/Graph.png")
 
     # โหลดโมเดล
-    model = tf.keras.models.load_model('model/mobilenetv2_cat_dog.h5', compile=False)
+    model = load_model("/model/mobilenetv2_cat_dog.h5", compile=False)
     model.save('model/mobilenetv2_cat_dog_saved', save_format='tf')
 
     # ฟังก์ชันทำนายภาพ

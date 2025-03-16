@@ -168,7 +168,8 @@ with tab4:
     st.image("photo/Graph.png")
 
     # โหลดโมเดล
-    model = tf.keras.models.load_model('model/mobilenetv2_cat_dog.h5')
+    model = tf.keras.models.load_model('model/mobilenetv2_cat_dog.h5', custom_objects={'CustomLayer': CustomLayer})
+    model.save('model/mobilenetv2_cat_dog')
 
     # ฟังก์ชันทำนายภาพ
     def predict_image(image):
